@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div>
-            <div className="flex justify-center items-center h-screen bg-gray-800">
+            <div className="flex justify-center items-center h-screen bg-gray-900">
                 <div className="w-2/3 relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                     <svg
                         viewBox="0 0 1024 1024"
@@ -36,7 +36,7 @@ export default function Home() {
                         <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                             <a
                                 href="/login"
-                                className=" rounded-md bg-violet-950 px-3.5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                                className=" rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                             >
                                 Inicia Sesión
                             </a>

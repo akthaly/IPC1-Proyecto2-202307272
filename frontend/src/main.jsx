@@ -1,6 +1,6 @@
 import * as React from "react";
 import Login from "./pages/Login";
-import Home from "./Home";
+import Home from "./pages/Home";
 import Register from "./pages/Register";
 import EditarPerfil from "./pages/EditarPerfil";
 import CreatePost from "./pages/CreatePost";
@@ -38,6 +38,7 @@ const router = createBrowserRouter([
     element: <Información/>,
   
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
