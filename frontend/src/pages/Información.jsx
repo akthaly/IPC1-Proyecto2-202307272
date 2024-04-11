@@ -7,7 +7,7 @@ const links = [
     { name: 'TikTok', href: 'https://www.tiktok.com/@akthalyxzh' },
 ]
 const stats = [
-    { name: 'Desarrolador', value: 'Alejandro Anona' },
+    { name: 'Desarrollador', value: 'Alejandro Anona' },
     { name: 'Carnet', value: '202307272' },
     { name: 'Curso', value: 'Laboratorio IPC1' },
     { name: 'CUI', value: '3060396800304' },
