@@ -39,19 +39,22 @@ export default function Login() {
   };
 
   return (
-    <main className="h-screen w-auto">
+    <main >
+      <div className="h-screen">
       <form
         onSubmit={handleSubmit}
         className="flex gap-8 justify-center items-center"
       >
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="h-screen flex flex-1 flex-col justify-center px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <Link to="/">
             <img
               className="mx-auto h-48 w-auto"
               src="img/LOGO.png"
               alt="LOGO USocial"
             />
-            <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+            </Link>
+            <h1 className="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-white">
               Inicia Sesión
             </h1>
           </div>
@@ -126,7 +129,7 @@ export default function Login() {
             <p className="mt-10 text-center text-sm text-gray-500">
               Aún no tienes cuenta?{" "}
               <Link
-                to="/registro" // Uso de Link en lugar de a
+                to="/register" // Uso de Link en lugar de a
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
                 Registrate acá
@@ -135,6 +138,7 @@ export default function Login() {
           </div>
         </div>
       </form>
+      </div>
     </main>
   );
 }

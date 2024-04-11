@@ -26,10 +26,11 @@ export default function Register() {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-900">
-            <form onSubmit={handleSubmit} className="flex items-center flex-col w-2/5">
+        <div>
+        <div className="flex justify-center items-center bg-gray-900">
+            <form onSubmit={handleSubmit} className="flex items-center flex-col ">
                 <div className="border-b border-gray-900/10 pb-12">
-                    <h2 className="text-3xl font-semibold leading-7 text-white text-center">USocial - Registro</h2>
+                    <h2 className="mt-5 text-3xl font-semibold leading-7 text-white text-center">USocial - Registro</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-400 text-center">Llene los datos que le solicitan.</p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -204,6 +205,7 @@ export default function Register() {
                     </div>
                 </div>
             </form>
+        </div>
         </div>
     );
 }

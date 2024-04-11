@@ -3,6 +3,8 @@ import Login from "./pages/Login";
 import Home from "./Home";
 import Register from "./pages/Register";
 import EditarPerfil from "./pages/EditarPerfil";
+import CreatePost from "./pages/CreatePost";
+import Información from "./pages/Información";
 import './index.css';
 import * as ReactDOM from "react-dom/client";
 import {
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
     element: < Home />,
   },
   {
-    path: "/registro",
+    path: "/register",
     element: < Register />,
   },
   {
@@ -26,6 +28,15 @@ const router = createBrowserRouter([
   {
     path: "/edit",
     element: <EditarPerfil/>,
+  },
+  {
+    path: "/createPost",
+    element: <CreatePost/>,
+  },
+  {
+    path: "/info",
+    element: <Información/>,
+  
   },
 ]);
 
