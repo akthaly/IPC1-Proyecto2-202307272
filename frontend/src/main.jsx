@@ -5,18 +5,16 @@ import Register from "./pages/Register";
 import EditarPerfil from "./pages/EditarPerfil";
 import CreatePost from "./pages/CreatePost";
 import Información from "./pages/Información";
-import Perfil from "./pages/Perfil";
 import './index.css';
 import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: < Home />,
   },
   {
@@ -39,14 +37,6 @@ const router = createBrowserRouter([
     path: "/info",
     element: <Información/>,
   
-  },
-  {
-    path: "/profile",
-    element: <Perfil />,
-  },
-  {
-    path: "/",
-    element: <HomePage />,
   },
   
 

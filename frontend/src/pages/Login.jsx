@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link} from "react-router-dom";
+import {useNavigate, Link, Navigate} from "react-router-dom";
 
 
 export default function Login() {
@@ -42,6 +42,7 @@ export default function Login() {
                 throw new Error("Something went wrong"); //lanza un error con el mensaje de la respuesta o un mensaje de error
             } else {
                 alert("Usuario encontrado"); //muestra una alerta con el mensaje de la respuesta
+                Navigate("/"); //redirige a la pagina principal
             }
 
 
