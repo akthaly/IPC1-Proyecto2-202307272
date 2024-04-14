@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+
+
 export default function Login() {
 
     const [formData, setFormData] = useState({ //guarda todos los datos del formulario
-        email: "", //inicializa los campos vacios para email
+        carnet: "", //inicializa los campos vacios para email
         password: "", //inicializa los campos vacios para password
-                        //si tuviera más inputs entonces agrego más campos
+        //si tuviera más inputs entonces agrego más campos
     });
+    
 
     const handleChange = (e) => { //funcion de cambio, se ejecuta cada vez que se cambia un input la (e) es un evento
         const { name, value } = e.target; //obtiene el nombre y el valor del input
@@ -20,10 +23,9 @@ export default function Login() {
 
     const handleSubmit = async (e) => { //funcion de envio, se ejecuta cada vez que se envia el formulario, hay que poner async para poder usar await
         e.preventDefault();  // para no refrescar la pagina
-        console.log({ formData }); //imprime en consola los datos del formulario, como dato, en js los objetos se escriben entre {}, por ejemplo {fromData}
-        
+
         //aca se puede hacer la peticion a la api, en este caso a la ruta de login
-        
+
         try {
             const response = await fetch("http://localhost:5000/api/auth/login", { //esto es una promesa, se usa await para esperar la respuesta
                 method: "POST", //se usa el metodo POST para enviar los datos
@@ -31,22 +33,25 @@ export default function Login() {
                     "Content-Type": "application/json", //se especifica que se va a enviar un json al server.js
                 },
                 body: JSON.stringify(formData), //se envia el objeto formData en formato json, SOLO SIRVE PARA POST NO PARA "GET"
+                
             })
 
-            
+
             if (!response.ok) { //si la respuesta no es correcta
                 alert("Usuario no encontrado"); //muestra una alerta con el mensaje de la respuesta
                 throw new Error("Something went wrong"); //lanza un error con el mensaje de la respuesta o un mensaje de error
+            } else {
+                alert("Usuario encontrado"); //muestra una alerta con el mensaje de la respuesta
             }
 
 
             const data = await response.json(); //espera la respuesta del servidor y la convierte en json
-            console.log({data}); //imprime en consola la respuesta del servidor
+            console.log({ data }); //imprime en consola la respuesta del servidor
 
         } catch (error) {
             console.log(error);
         }
-        
+
     }
 
     return (
@@ -65,18 +70,17 @@ export default function Login() {
                         </h1>
                         <form //envuelve los input y el boton, la parte de onSubmit es para que cuando se envie el formulario se ejecute la funcion handleSubmit
                             class="space-y-4 md:space-y-6"
-                            onSubmit={handleSubmit}>  
+                            onSubmit={handleSubmit}>
                             <div>
                                 <label
                                     for="email"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Carnet/Código USAC</label>
                                 <input
-                                    type="email"
-                                    name="email" //asigna el nombre del input para poder identificarlo en el formulario
-                                    id="email"
-                                    value={formData.email} //se envia el valor del input, en este caso el correo
+                                    type="text"
+                                    name="carnet" //asigna el nombre del input para poder identificarlo en el formulario
+                                    id="carnet"
+                                    value={formData.carnet} //se envia el valor del input, en este caso el correo
                                     onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
-                                    required
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="correo@example.com / 2023XXXXX" />
                             </div>
                             <div>

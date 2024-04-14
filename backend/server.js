@@ -1,7 +1,7 @@
 import express from 'express';
 //para ejecutar un archivo de node se usa el comando node server.js
 import bodyParser from 'body-parser'; //importa el modulo de body-parser para poder leer los datos que se envian desde el cliente
-import authRoutes from './routes/auth.js'; //importa las rutas de autenticacion
+import authRoutes from './routes/routes.js'; //importa las rutas de autenticacion
 import cors from 'cors'; //importa el modulo de cors para poder hacer peticiones desde el frontend
 
 const app = express(); //creamos nuestra aplicacion de express
@@ -13,7 +13,7 @@ app.use(cors(
 
 )); //Middleware cors, para poder hacer peticiones desde el frontend
 
-app.use('/api/auth', authRoutes); //vamos a hacerle peticiones a http://localhost:5000/api/auth/login
+app.use('/api/auth', authRoutes); //vamos a hacerle peticiones a http://localhost:5000/api/auth/ruta
 
 const PORT = 5000; /*se crea una constante que se llama PORT, 
 es el puerto donde se va a ejecutar el servidor, no puede ser el mismo puerto que el de react*/
