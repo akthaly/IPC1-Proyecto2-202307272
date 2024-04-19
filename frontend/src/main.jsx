@@ -3,14 +3,21 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import EditarPerfil from "./pages/EditarPerfil";
-import CreatePost from "./pages/CreatePost";
+import CreatePost from "./pages/Post";
 import Información from "./pages/Información";
+import Feed from "./pages/Feed";
+import Admin from "./pages/Admin";
+import Profile from "./pages/Perfil";
+import Usuarios from "./pagesAdmin/ListaUsuarios";
+import ListaPosts from "./pagesAdmin/ListaPosts";
+import Load from "./pagesAdmin/Load";
 import './index.css';
 import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 
 const router = createBrowserRouter([
   {
@@ -26,7 +33,24 @@ const router = createBrowserRouter([
     element: < Login />,
   },
   {
-    path: "/edit",
+    path: "/info",
+    element: <Información/>,
+  
+  },
+  {
+    path: "/admin",
+    element: <Admin/>,
+  },
+  {
+    path: "/feed",
+    element: <Feed/>,
+  },
+  {
+    path: "/profile",
+    element: <Profile/>
+  },
+  {
+    path: "/profile/edit",
     element: <EditarPerfil/>,
   },
   {
@@ -34,11 +58,18 @@ const router = createBrowserRouter([
     element: <CreatePost/>,
   },
   {
-    path: "/info",
-    element: <Información/>,
-  
+    path: "/admin/list-usuarios",
+    element: <Usuarios/>
   },
-  
+  {
+    path: "/admin/list-posts",
+    element: <ListaPosts/>
+  },
+  {
+    path: "/admin/load",
+    element: <Load/>
+  }
+
 
 ]);
 

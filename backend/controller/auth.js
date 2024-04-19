@@ -1,4 +1,4 @@
-import {users} from '../data/dataLists.js' //se importa el arreglo de usuarios que se encuentra en el archivo dataLists.js
+import {list_users} from '../data/dataLists.js' //se importa el arreglo de usuarios que se encuentra en el archivo dataLists.js
 
 //estamos creando la funcionalidad para el servidor, en este caso la autenticacion de un usuario
 
@@ -11,7 +11,7 @@ export const login = (req, res) => {  //se crea la funcion login que recibe dos 
     const password = req.body.password;
     esto es lo mismo que lo anterior, pero en dos lineas de codigo, la primera forma es más corta y limpia
     */
-    const user = users.find(user => user.carnet ===carnet && user.password === password);
+    const user = list_users.find(user => user.carnet ===carnet && user.password === password);
     //se crea una constante que se llama user, y se le asigna el valor de la busqueda del usuario en el arreglo de usuarios, se busca el usuario que tenga el mismo correo y contraseña que el que se envio en el formulario
 
     if (!user) {
@@ -19,7 +19,7 @@ export const login = (req, res) => {  //se crea la funcion login que recibe dos 
         //si no se encuentra el usuario, se responde con un status 401 (no autorizado) y un mensaje de que el usuario no se encontro
     }
 
-    return res.status(200).json({message: "Usuario encontrado"});
+    return res.status(200).json({message:"Usuario encontrado", usuario: user});
     //si se encuentra el usuario, se responde con un status 200 (ok) (ver la pagina http.cat, ahí estan todos los status) y un mensaje de que el usuario se encontro y se envia el usuario
 
 }
@@ -27,7 +27,7 @@ export const login = (req, res) => {  //se crea la funcion login que recibe dos 
 export const getAllUsers = (req, res) => {
 
     try{
-        return res.status(200).json({usuario: users});
+        return res.status(200).json({usuarios: list_users});
     }catch(error){
         return res.status(500).json({message: error.message});
 }
@@ -36,12 +36,12 @@ export const getAllUsers = (req, res) => {
 export const register = (req, res) => {
     const {email, password, carnet, nombre, apellido, genero, facultad, carrera} = req.body; //se crea una constante que se llama carnet y password, y se le asigna el valor del objeto req.body, que es lo que nos envia el cliente
 
-    const user = users.find(user => user.email === email && user.carnet === carnet);
+    const user = list_users.find(user => user.email === email && user.carnet === carnet);
     if (user) {
         return res.status(409).json({ message: "Usuario ya existe"});
         //si se encuentra el usuario, se responde con un status 409 (conflicto) y un mensaje de que el usuario ya existe
     }
-    users.push({email, password, carnet, nombre, apellido, genero, facultad, carrera});
+    list_users.push({email, password, carnet, nombre, apellido, genero, facultad, carrera});
     return res.status(201).json({ message: "Usuario creado"});
     //si se encuentra el usuario, se responde con un status 201 (creado) y un mensaje de que el usuario se creo
 }

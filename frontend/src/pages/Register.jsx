@@ -9,8 +9,8 @@ export default function Register() {
         //inicializa los campos vacios para las constantes
 
         carnet: '',
-        nombres: '',
-        apellidos: '',
+        nombre: '',
+        apellido: '',
         genero: '',
         email: '',
         facultad: '',
@@ -28,7 +28,7 @@ export default function Register() {
         e.preventDefault(); // para no refrescar la pagina
 
         try {
-            const response = await fetch("http://localhost:5000/api/auth/register", { //esto es una promesa, se usa await para esperar la respuesta
+            const response = await fetch("http://localhost:5000/api/register", { //esto es una promesa, se usa await para esperar la respuesta
                 method: "POST", //se usa el metodo POST para enviar los datos
                 headers: {
                     "Content-Type": "application/json", //se especifica que se va a enviar un json al server.js
@@ -49,9 +49,9 @@ export default function Register() {
     }
 
         return (
-            <section class="bg-gray-50 dark:bg-gray-900">
-                <div class="flex flex-col items-center justify-center w-1/2 px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <section className="bg-gray-50 dark:bg-gray-900">
+                <div className="flex flex-col items-center justify-center w-1/2 px-6 py-8 mx-auto md:h-screen lg:py-0">
+                    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                         <form
                             onSubmit={handleSubmit} //cuando se envie el formulario se ejecuta la funcion handleSubmit
                             className="flex items-center flex-col ">
@@ -83,6 +83,7 @@ export default function Register() {
                                                 style={{ paddingLeft: '10px' }}
                                                 autoComplete="carnet"
                                                 placeholder="2023XXXXX"
+                                                required
                                                 value={formData.carnet} //se envia el valor del input, en este caso el carnet
                                                 onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -91,18 +92,19 @@ export default function Register() {
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="nombres" className="block text-sm font-medium leading-6 text-white">
+                                        <label htmlFor="nombre" className="block text-sm font-medium leading-6 text-white">
                                             Nombres
                                         </label>
                                         <div className="mt-2">
                                             <input
                                                 type="text"
-                                                name="nombres"
-                                                id="nombres"
+                                                name="nombre"
+                                                id="nombre"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 autoComplete="given-name"
                                                 placeholder="Ingrese sus nombres"
-                                                value={formData.nombres} //se envia el valor del input, en este caso los nombres
+                                                value={formData.nombre} //se envia el valor del input, en este caso los nombres
                                                 onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             />
@@ -110,18 +112,19 @@ export default function Register() {
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="apellidos" className="block text-sm font-medium leading-6 text-white">
+                                        <label htmlFor="apellido" className="block text-sm font-medium leading-6 text-white">
                                             Apellidos
                                         </label>
                                         <div className="mt-2">
                                             <input
                                                 type="text"
-                                                name="apellidos"
-                                                id="apellidos"
+                                                name="apellido"
+                                                id="apellido"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 autoComplete="family-name"
                                                 placeholder="Ingrese sus apellidos"
-                                                value={formData.apellidos} //se envia el valor del input, en este caso los apellidos
+                                                value={formData.apellido} //se envia el valor del input, en este caso los apellidos
                                                 onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             />
@@ -136,6 +139,7 @@ export default function Register() {
                                             <select
                                                 id="genero"
                                                 name="genero"
+                                                required
                                                 value={formData.genero} //se envia el valor del input, en este caso el genero
                                                 onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -156,6 +160,7 @@ export default function Register() {
                                                 id="email"
                                                 name="email"
                                                 type="email"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 autoComplete="email"
                                                 placeholder="correo@example.com" //placeholder es el texto que se muestra como ejemplo
@@ -175,6 +180,7 @@ export default function Register() {
                                                 id="facultad"
                                                 name="facultad"
                                                 type="text"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 placeholder="Ingeniería, Ciencias Jurídicas, etc."
                                                 value={formData.facultad} //se envia el valor del input, en este caso la facultad
@@ -195,6 +201,7 @@ export default function Register() {
                                                 type="text"
                                                 name="carrera"
                                                 id="carrera"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 placeholder="Ingeniería en Sistemas, Derecho, etc."
                                                 value={formData.carrera} //se envia el valor del input, en este caso la carrera
@@ -208,7 +215,7 @@ export default function Register() {
 
 
                                     <div className="sm:col-span-2 sm:col-start-1">
-                                        <label htmlFor="city" className="block text-sm font-medium leading-6 text-white">
+                                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
                                             Contraseña
                                         </label>
                                         <div className="mt-2">
@@ -216,6 +223,7 @@ export default function Register() {
                                                 type="password"
                                                 name="password"
                                                 id="password"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 value={formData.password} //se envia el valor del input, en este caso la contraseña
                                                 onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
@@ -225,7 +233,7 @@ export default function Register() {
                                     </div>
 
                                     <div className="sm:col-span-2">
-                                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
+                                        <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-white">
                                             Confirmar Contraseña
                                         </label>
                                         <div className="mt-2">
@@ -233,6 +241,7 @@ export default function Register() {
                                                 type="password"
                                                 name="confirmPassword"
                                                 id="confirmPassword"
+                                                required
                                                 style={{ paddingLeft: '10px' }}
                                                 value={formData.confirmPassword} //se envia el valor del input, en este caso la confirmacion de la contraseña
                                                 onChange={handleChange} //cada vez que cambie el input se ejecuta la funcion
@@ -252,7 +261,6 @@ export default function Register() {
                                         </Link>
 
                                     </p>
-
                                     <Button
                                         type="submit"
                                         className="text-current font-bold transition ease-in-out delay-150 bg-indigo-600

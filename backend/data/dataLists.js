@@ -1,4 +1,4 @@
-let users = [{
+let list_users = [{
 
     //este es un array
 
@@ -13,14 +13,13 @@ let users = [{
 
 }]
 
-let posts = [{ //arreglo de posts
+let list_posts = [{ //arreglo de posts
     anonimo: Boolean, //si el post es anonimo o no
     id:[], //id del post  (autoincremental)
     carnet:[], //id del usuario que creo el post
     descripcion:[], //descripcion del post
     imagen:[], //imagen del post
-    fechahora: [], //fecha y hora de creacion del post
-    comentarios:[] //comentarios del post
+    fechaHora: [], //fecha y hora de creacion del post
 }]
 
-export { users, posts }; //exporta el arreglo de usuarios para poder usarlo en otros archivos
+export { list_users, list_posts }; //exporta el arreglo de usuarios para poder usarlo en otros archivos

@@ -8,6 +8,8 @@ const router = express.Router(); //se crea un router de express
 /*aqui administramos las rutas de la aplicacion, en este caso la ruta de login con https methods, 
 ver la pagina de internet https://developer.mozilla.org/es/docs/Web/HTTP/Methods */
 
+//Post 
+
 router.post('/login', login); 
 
 /* /login es para especificar la ruta hacia donde queremos mandar los datos del 
@@ -18,11 +20,17 @@ router.post('/register', register); //ruta para registrar un usuario
 
 router.post('/createPost', createPost); //ruta para crear un post
 
+//Get
+
 router.get('/getPosts', getPosts); //ruta para obtener los posts
 
 router.get('/getAllUsers', getAllUsers); //ruta para obtener todos los usuarios
 
+//Put
+
 router.put('/update', updateUser); //ruta para actualizar un usuario
+
+//Delete
 
 router.delete('/delete', deleteUser); //ruta para eliminar un usuario
 

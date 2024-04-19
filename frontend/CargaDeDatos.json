@@ -1,0 +1,13 @@
+[
+    {
+        "email": "bryan2014ap@gmail.com",
+        "password": "123456",
+        "carnet": "202307272",
+        "nombre": "Alejandro",
+        "apellido": "Perez",
+        "genero": "Masculino",
+        "facultad": "Ingenieria",
+        "carrera": "Ingenieria en Ciencias de la Computacion"
+    }
+
+]

@@ -1,9 +1,9 @@
-import { users } from "../data/dataLists.js";
+import { list_users } from "../data/dataLists.js";
 
 export const updateUser = (req, res) => {
     try {
         const { email, password, carnet, nombre, apellido, genero, facultad, carrera } = req.body;
-        const user = users.find(user => user.carnet === carnet); //se busca el usuario por el carnet
+        const user = list_users.find(user => user.carnet === carnet); //se busca el usuario por el carnet
         if (!user) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         }
