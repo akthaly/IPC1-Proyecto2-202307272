@@ -13,13 +13,9 @@ let list_users = [{
 
 }]
 
-let list_posts = [{ //arreglo de posts
-    anonimo: Boolean, //si el post es anonimo o no
-    id:[], //id del post  (autoincremental)
-    carnet:[], //id del usuario que creo el post
-    descripcion:[], //descripcion del post
-    imagen:[], //imagen del post
-    fechaHora: [], //fecha y hora de creacion del post
-}]
+let list_posts = [] //arreglo de posts
+
+
+let list_comments = [] //arreglo de comentarios
 
 export { list_users, list_posts }; //exporta el arreglo de usuarios para poder usarlo en otros archivos

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Button } from '@nextui-org/react'
 import NavBar from "../components/NavBar";
-import { useNavigate, Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
 
@@ -9,13 +7,14 @@ import { useCookies } from 'react-cookie';
 export default function CreatePost() {
     const [cookies] = useCookies(['usuario']); //almacena las cookies del usuario
     const datosUser = cookies.usuario || {}; // Verifica si cookies.usuario es indefinido o nulo
-    const carnet = datosUser.carnet;
+    const {carnet, nombre, apellido, carrera, facultad} = datosUser;
 
 
-    const [anonima, setAnonimo] = useState(false); //inicializa el estado de anonimo en falso
+    const [anonimo, setAnonimo] = useState(false); //inicializa el estado de anonimo en falso
     const [descripcion, setDescripcion] = useState('');
     const [imagen, setImagen] = useState('');
     const [imagenURL, setImagenURL] = useState('');
+    const [categoria, setCategoria] = useState(''); // Estado para la categoría seleccionada
 
     const handleDescripcionChange = (event) => {
         setDescripcion(event.target.value);
@@ -38,14 +37,23 @@ export default function CreatePost() {
         setAnonimo(event.target.checked);
     };
 
+    const handleCategoriaChange = (event) => {
+        setCategoria(event.target.value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const dataJson = {
+            nombre: nombre,
+            apellido:apellido,
             carnet: carnet,
             descripcion: descripcion,
             imagen: imagen,
-            anonima: anonima,
+            anonimo: anonimo,
+            carrera: carrera,
+            facultad: facultad,
+            categoria: categoria,
         }
 
         fetch(`http://localhost:5000/api/createPost`, {
@@ -60,8 +68,11 @@ export default function CreatePost() {
 
                 console.log(res)
                 alert(res.mensaje)
-                setImagenURL('');
                 console.log(dataJson)
+                setDescripcion(''); // Limpia la descripción después de enviar el formulario
+                setImagen(''); // Limpia la imagen después de enviar el formulario
+                setImagenURL(''); // Limpia la URL de la imagen después de enviar el formulario
+                setCategoria(''); // Limpia la categoría después de enviar el formulario
             })
             .catch((error) => console.error(error))
 
@@ -105,12 +116,29 @@ export default function CreatePost() {
                                 />
                             )}
                         </div>
+                        {/* Campo de selección para la categoría */}
+                        <div>
+                            <label htmlFor="categoria" className="block text-gray-100">Categoría:</label>
+                            <select
+                                id="categoria"
+                                value={categoria}
+                                onChange={handleCategoriaChange}
+                                required
+                                className="text-slate-900 w-48 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
+                            >
+                                <option value="" disabled>Selecciona una categoría</option>
+                                <option value="Anuncio Importante">Anuncio Importante</option>
+                                <option value="Divertido">Divertido</option>
+                                <option value="Académico">Académico</option>
+                                <option value="Variedad">Variedad</option>
+                            </select>
+                        </div>
                         <div className="flex justify-end items-end">
                             <label htmlFor="anonima" className="block text-gray-100">¿Publicar como anónimo?</label>
                             <input
                                 type="checkbox"
                                 id="anonima"
-                                checked={anonima}
+                                checked={anonimo}
                                 onChange={handleEsAnonimaChange}
                                 className="ml-2 mb-1"
                             />
