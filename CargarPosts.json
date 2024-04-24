@@ -1,0 +1,36 @@
+[
+    {
+        "anonimo": false,
+        "carnet": "201812345",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "imagen":"",
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "carrera": "Ingenieria en Sistemas",
+        "facultad": "Ingenieria",
+        "categoria": "Academico"
+    },
+    {
+        "anonimo": true,
+        "carnet": "12312",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "imagen":"",
+        "nombre": "Ivafaj",
+        "apellido": "ASDjkas",
+        "carrera": "Ingenieria en Sistemas",
+        "facultad": "Ingenieria",
+        "categoria": "Academico"
+
+    },
+    {
+        "anonimo": false,
+        "carnet": "202345",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "imagen":"",
+        "nombre": "Juana",
+        "apellido": "Perezasdfasd",
+        "carrera": "Ingenieria en Sistemas",
+        "facultad": "Ingenieria",
+        "categoria": "Variedad"
+    }
+]

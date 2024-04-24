@@ -49,7 +49,7 @@ export default function Perfil() {
                             <p className="text-gray-200 font-semibold">{genero}</p>
                             <p className="text-gray-200 font-semibold">Correo: {correo}</p>
                             <p className="text-gray-200 font-semibold">Facultad: {facultad}</p>
-                            <p className="text-gray-200 font-semibold">{carrera}</p>
+                            <p className="text-gray-200 font-semibold">Carrera: {carrera}</p>
                         </div>
 
                         <div className="mt-6 flex flex-col items-center">

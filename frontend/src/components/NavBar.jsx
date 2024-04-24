@@ -2,12 +2,13 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom';
-import { Link, LinkIcon } from '@nextui-org/react';
 
 
 const navigation = [
-  { name: 'Home', href: "/feed", current: true },
+  { name: 'Home', href: "/home", current: true },
+  { name: 'Tendencias', href: '/tendencias', current: true },
   { name: 'Crear una Publicación', href: '/createPost', current: true },
+  
 ]
 
 function classNames(...classes) {

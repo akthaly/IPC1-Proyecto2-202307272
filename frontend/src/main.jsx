@@ -1,16 +1,19 @@
 import * as React from "react";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Inicio from "./pages/Inicio";
 import Register from "./pages/Register";
 import EditarPerfil from "./pages/EditarPerfil";
 import CreatePost from "./pages/Post";
 import Información from "./pages/Información";
-import Feed from "./pages/Feed";
+import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Profile from "./pages/Perfil";
 import Usuarios from "./pagesAdmin/ListaUsuarios";
 import ListaPosts from "./pagesAdmin/ListaPosts";
-import Load from "./pagesAdmin/Load";
+import Estadisticas from "./pagesAdmin/Graficas";
+import LoadUsers from "./pagesAdmin/LoadUsers";
+import LoadPosts from "./pagesAdmin/LoadPosts";
+import Tendencias from "./pages/Tendencias";
 import './index.css';
 import * as ReactDOM from "react-dom/client";
 import {
@@ -22,7 +25,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: < Home />,
+    element: < Inicio />,
   },
   {
     path: "/register",
@@ -42,8 +45,12 @@ const router = createBrowserRouter([
     element: <Admin/>,
   },
   {
-    path: "/feed",
-    element: <Feed/>,
+    path: "/home",
+    element: <Home/>,
+  },
+  {
+    path: "/tendencias",
+    element: <Tendencias/>,
   },
   {
     path: "/profile",
@@ -66,9 +73,17 @@ const router = createBrowserRouter([
     element: <ListaPosts/>
   },
   {
-    path: "/admin/load",
-    element: <Load/>
-  }
+    path: "/admin/estadisticas",
+    element: <Estadisticas/>
+  },
+  {
+    path: "/admin/loadUsers",
+    element: <LoadUsers/>
+  },
+  {
+    path: "/admin/loadPosts",
+    element: <LoadPosts/>
+  },
 
 
 ]);

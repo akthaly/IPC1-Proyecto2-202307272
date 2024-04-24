@@ -29,6 +29,7 @@ export const createPost = (req, res) => { //se crea la funcion createPost que re
         imagen: imagen, //se le asigna la imagen
         fechaHora: new Date(), //se le asigna la fecha y hora actual
         likes:[], //se crea un arreglo de likes
+        comentarios:[] //se crea un arreglo de comentarios
     }
     list_posts.push(post); //se agrega el post al arreglo de posts
     return res.status(201).json({ mensaje: "Post creado exitosamente", post }); //se responde con un status 201 (creado) y un mensaje de que el post se creo exitosamente
@@ -45,5 +46,56 @@ export const getPosts = (req, res) => {
    }
 }
 
+export const addComment = (req, res) => {
+    const { postId, userId, text } = req.body;
+
+    // Busca el post por ID
+    const post = list_posts.find(p => p.id === postId);
+    if (!post) {
+        return res.status(404).json({ mensaje: "Post no encontrado" });
+    }
+
+    // Busca al usuario por userId
+    const user = list_users.find(u => u.carnet === userId);
+    if (!user) {
+        return res.status(404).json({ mensaje: "Usuario no encontrado" });
+    }
+
+    // Crear el comentario
+    const comment = {
+        id: Date.now(),
+        userId,
+        nombre: user.nombre, // Agrega el nombre del usuario
+        apellido: user.apellido, // Agrega el apellido del usuario
+        text,
+        fechaHora: new Date(),
+    };
+
+    // Agrega el comentario al post
+    post.comentarios.push(comment);
+
+    return res.status(201).json({ mensaje: "Comentario agregado exitosamente", comentario: comment });
+};
 
 
+export const Like = (req, res) => {
+    const { postId, userId } = req.body;
+
+    // Busca el post por ID
+    const post = list_posts.find(p => p.id === postId);
+    if (!post) {
+        return res.status(404).json({ mensaje: "Post no encontrado" });
+    }
+
+    // Alternar el "Me gusta"
+    const index = post.likes.indexOf(userId);
+    if (index === -1) {
+        // Si el usuario no ha dado "Me gusta", lo agrega
+        post.likes.push(userId);
+        return res.status(200).json({ mensaje: "Like agregado exitosamente" });
+    } else {
+        // Si el usuario ya ha dado "Me gusta", lo elimina
+        post.likes.splice(index, 1);
+        return res.status(200).json({ mensaje: "Like eliminado exitosamente" });
+    }
+};

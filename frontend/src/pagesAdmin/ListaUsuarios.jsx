@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie';
 import NavBarAdmin from "../components/NavBarAdmin";
 
 export default function Usuarios() {
-
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [updateTable, setUpdateTable] = useState(false);
@@ -15,15 +14,11 @@ export default function Usuarios() {
                 if (response.ok) {
                     const data = await response.json();
                     setUsers(data.usuarios);
-                    console.log(data)
-
-                } else{
+                } else {
                     throw new Error('Error al obtener los usuarios');
                 }
-                
             } catch (error) {
-                console.error(error);
-                
+                console.error('Error al obtener los usuarios:', error);
             }
         };
 
@@ -39,26 +34,64 @@ export default function Usuarios() {
     }
 
     const deleteUser = async (carnetDelete) => {
-
         try {
-            const response = await fetch(`http://localhost:5000/api/delete`, {
+            const response = await fetch(`http://localhost:5000/api/deleteUser`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ carnet: carnetDelete }),
-            })
+            });
 
             const data = await response.json();
-            console.log({ data });
-            setUpdateTable(!updateTable);
-
+            if (response.ok) {
+                // Actualizar la tabla de usuarios después de eliminar uno
+                setUpdateTable(!updateTable);
+            } else {
+                throw new Error(data.mensaje || 'Error al eliminar el usuario');
+            }
         } catch (error) {
-            alert("Error al eliminar el usuario");
+            console.error('Error al eliminar el usuario:', error);
         }
-
-
     }
+
+    // Función para convertir los datos de usuarios a CSV
+    const convertToCSV = (users) => {
+        const csvData = [];
+        // Agregar encabezados
+        csvData.push(['Carnet', 'Nombre', 'Apellido', 'Genero', 'Facultad', 'Carrera', 'Correo Electrónico'].join(','));
+
+        // Agregar filas de datos
+        users.forEach(user => {
+            const row = [
+                user.carnet,
+                user.nombre,
+                user.apellido,
+                user.genero,
+                user.facultad,
+                user.carrera,
+                user.email
+            ];
+            csvData.push(row.join(','));
+        });
+
+        // Unir todas las filas con un salto de línea
+        return csvData.join('\n');
+    };
+
+    // Función para descargar los datos de usuarios en un archivo CSV
+    const downloadCSV = () => {
+        const csv = convertToCSV(users);
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'usuarios.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     return (
         <div>
@@ -66,7 +99,11 @@ export default function Usuarios() {
             <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-max w-full space-y-8">
                     <div>
-                        <h2 className="text-3xl font-extrabold text-gray-100">Usuario de USocial</h2>
+                        <h2 className="text-3xl font-extrabold text-gray-100">Usuarios de USocial</h2>
+                        {/* Botón para descargar CSV */}
+                        <button onClick={downloadCSV} className="mt-4 text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded">
+                            Descargar CSV
+                        </button>
                     </div>
                     <div className="bg-gray-700 shadow overflow-hidden sm:rounded-lg">
                         <table className="min-w-screen divide-y divide-slate-500">
@@ -109,10 +146,12 @@ export default function Usuarios() {
                                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">Detalles del Usuario</h3>
                                     <div className="mt-2">
-                                        <p className="text-sm text-gray-500">Carnet: {selectedUser.carnet}</p>
-                                        <p className="text-sm text-gray-500">Nombre: {selectedUser.nombre}</p>
-                                        <p className="text-sm text-gray-500">Apellidos: {selectedUser.apellido}</p>
-                                        <p className="text-sm text-gray-500">Facultad: {selectedUser.facultad}</p>
+                                        <p className="text-sm text-gray-500 font-bold">Nombre: {selectedUser.nombre}</p>
+                                        <p className="text-sm text-gray-500 font-bold">Apellidos: {selectedUser.apellido}</p>
+                                        <p className="text-sm text-gray-500 font-bold">Carnet: {selectedUser.carnet}</p>
+                                        <p className="text-sm text-gray-500 font-bold">Facultad: {selectedUser.facultad}</p>
+                                        <p className="text-sm text-gray-500 font-bold">Carrera: {selectedUser.carrera}</p>
+                                        <p className="text-sm text-gray-500 font-bold">Correo Electrónico: {selectedUser.email}</p>
                                     </div>
                                 </div>
                                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -126,5 +165,5 @@ export default function Usuarios() {
                 )}
             </div>
         </div>
-    )
+    );
 }

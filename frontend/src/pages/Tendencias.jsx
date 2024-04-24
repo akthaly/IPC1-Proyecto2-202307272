@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useCookies } from 'react-cookie';
 import NavBar from "../components/NavBar";
 
-export default function Home() {
+export default function Tendencias() {
     const [cookies] = useCookies(['usuario']);
     const datosUser = cookies.usuario || {}; // Verifica si cookies.usuario es indefinido o nulo
     const [posts, setPosts] = useState([]);
@@ -15,18 +15,30 @@ export default function Home() {
         fetch('http://localhost:5000/api/getPosts')
             .then(response => response.json())
             .then(data => {
-                const sortedPosts = data.publicaciones.sort((a, b) => new Date(b.fechaHora) - new Date(a.fechaHora));
-                setPosts(sortedPosts);
-
                 // Inicializar los likes y comentarios con los datos de los posts
                 const initialLikes = {};
                 const initialComments = {};
-                sortedPosts.forEach(post => {
+                data.publicaciones.forEach(post => {
                     initialLikes[post.id] = post.likes.length;
                     initialComments[post.id] = post.comentarios;
                 });
                 setLikes(initialLikes);
                 setComments(initialComments);
+
+                // Ordenar los posts por la cantidad de likes y comentarios, de forma descendente
+                const sortedPosts = data.publicaciones.sort((a, b) => {
+                    // Ordenar por la suma de likes y comentarios en orden descendente
+                    const likesDifference = (b.likes.length) - (a.likes.length);
+                    if (likesDifference !== 0) {
+                        return likesDifference; // Si hay diferencia en likes, ordenar por likes
+                    }
+
+                    // Si los likes son iguales, ordenar por la cantidad de comentarios
+                    return (b.comentarios.length) - (a.comentarios.length);
+                });
+                
+                // Guarda los posts ordenados en el estado
+                setPosts(sortedPosts);
             })
             .catch(error => console.error('Error fetching posts:', error));
     }, []);
@@ -46,14 +58,12 @@ export default function Home() {
                         ...prevLikes,
                         [postId]: (prevLikes[postId] || 0) + 1
                     }));
-                    
                 } else if (data.mensaje === 'Like eliminado exitosamente') {
                     setLikes((prevLikes) => ({
                         ...prevLikes,
                         [postId]: (prevLikes[postId] || 0) - 1
                     }));
                 }
-                
             });
     };
 
@@ -72,7 +82,6 @@ export default function Home() {
                         ...prevComments,
                         [postId]: [...(prevComments[postId] || []), data.comentario]
                     }));
-                    console.log(data);
                 }
             });
     };
@@ -81,7 +90,7 @@ export default function Home() {
         <div className="bg-blend-screen min-h-screen">
             <NavBar />
             <div className="container mx-auto py-4">
-                <h1 className="text-3xl font-bold mb-4">Home</h1>
+                <h1 className="text-3xl font-bold mb-4">Tendencias</h1>
                 <div className="space-y-4">
                     {posts.map(post => (
                         <div key={post.id} className="bg-slate-800 shadow-md rounded-lg p-4">

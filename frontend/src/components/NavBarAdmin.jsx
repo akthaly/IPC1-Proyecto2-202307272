@@ -6,8 +6,10 @@ const navigation = [
   { name: 'Inicio', href: '/admin', current: true },
   { name: 'Usuarios de USocial', href: '/admin/list-usuarios', current: true },
   { name: 'Posts de USocial', href: '/admin/list-posts', current: true },
-  { name: 'Gráficas', href: '#', current: true },
-  { name: 'Cargar Datos', href: '/admin/load', current: true },
+  { name: 'Gráficas', href: '/admin/estadisticas', current: true },
+  { name: 'Cargar Usuarios', href: '/admin/loadUsers', current: true },
+  { name: 'Cargar Posts', href: '/admin/loadPosts', current: true },
+  
 ]
 
 function classNames(...classes) {

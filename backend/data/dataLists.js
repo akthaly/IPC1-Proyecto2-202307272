@@ -16,6 +16,4 @@ let list_users = [{
 let list_posts = [] //arreglo de posts
 
 
-let list_comments = [] //arreglo de comentarios
-
 export { list_users, list_posts }; //exporta el arreglo de usuarios para poder usarlo en otros archivos

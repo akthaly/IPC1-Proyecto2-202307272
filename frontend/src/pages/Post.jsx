@@ -9,7 +9,7 @@ export default function CreatePost() {
     const datosUser = cookies.usuario || {}; // Verifica si cookies.usuario es indefinido o nulo
     const {carnet, nombre, apellido, carrera, facultad} = datosUser;
 
-
+    
     const [anonimo, setAnonimo] = useState(false); //inicializa el estado de anonimo en falso
     const [descripcion, setDescripcion] = useState('');
     const [imagen, setImagen] = useState('');
@@ -66,9 +66,9 @@ export default function CreatePost() {
             .then((response) => response.json())
             .then((res) => {
 
-                console.log(res)
-                alert(res.mensaje)
-                console.log(dataJson)
+                //console.log(res)
+                alert("Publicación creada con éxito")
+                //console.log(dataJson)
                 setDescripcion(''); // Limpia la descripción después de enviar el formulario
                 setImagen(''); // Limpia la imagen después de enviar el formulario
                 setImagenURL(''); // Limpia la URL de la imagen después de enviar el formulario

@@ -41,7 +41,7 @@ export default function Login() {
             })
 
             const data = await response.json(); //espera la respuesta del servidor y la convierte en json
-            console.log({ data }); //imprime en consola la respuesta del servidor
+            //console.log({ data }); //imprime en consola la respuesta del servidor
 
 
             if (response.ok) {
@@ -50,11 +50,11 @@ export default function Login() {
                 } else {
                     alert("Bienvenido " + data.usuario.nombre); // Muestra una alerta con el mensaje de la respuesta
                     setCookies('usuario', data.usuario, { path: '/' });
-                    console.log("Los cookies son:", cookies.usuario); //imprime en consola los cookies
-                    Navigate("/feed"); //redirige a la pagina principal
+                    //console.log("Los cookies son:", cookies.usuario); //imprime en consola los cookies
+                    Navigate("/home"); //redirige a la pagina principal
                 }
             } else {
-                alert("Usuario no encontrado"); //muestra una alerta con el mensaje de la respuesta
+                alert("Usuario o Contraseña incorrectos"); //muestra una alerta con el mensaje de la respuesta
                 throw new Error("Something went wrong"); //lanza un error con el mensaje de la respuesta o un mensaje de error
             }
 

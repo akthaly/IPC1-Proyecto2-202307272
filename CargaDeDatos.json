@@ -1,0 +1,33 @@
+[
+    {
+        "carnet": "20202",
+        "nombre": "Alejandro",
+        "apellido": "Perez",
+        "genero": "Masculino",
+        "facultad": "Ingenieria",
+        "carrera": "Ingenieria en Ciencias de la Computacion",
+        "email": "bryap@gmail.com",
+        "password": "123456" 
+    },
+    {
+        "carnet": "20203",
+        "nombre": "Bryan",
+        "apellido": "Gonzalez",
+        "genero": "Masculino",
+        "facultad": "Ingenieria",
+        "carrera": "Ingenieria en Ciencias de la Computacion",
+        "email": "alej@gmail.com",
+        "password": "123456"
+    },
+    {
+        "carnet": "20204",
+        "nombre": "Carlos",
+        "apellido": "Garcia",
+        "genero": "Masculino",
+        "facultad": "Ingenieria",
+        "carrera": "Ingenieria en Ciencias de la Computacion",
+        "email": "askjfa@gmail.com",
+        "password": "123456"
+    }
+
+]
