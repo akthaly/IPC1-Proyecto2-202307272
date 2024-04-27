@@ -124,7 +124,7 @@ export default function CreatePost() {
                                 value={categoria}
                                 onChange={handleCategoriaChange}
                                 required
-                                className="text-slate-900 w-48 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
+                                className="text-slate-900 w-60 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-white"
                             >
                                 <option value="" disabled>Selecciona una categoría</option>
                                 <option value="Anuncio Importante">Anuncio Importante</option>
